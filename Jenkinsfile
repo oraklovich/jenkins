@@ -3,19 +3,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Собираем проект..."'
-                sh 'mkdir -p build && echo "artifact" > build/output.txt'
+                sh 'mvn clean package'
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "Запускаем тесты..."'
-                sh 'cat build/output.txt | grep artifact'
+                sh 'mvn test'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Деплойим приложение на сервер (пока фейково)!"'
+                echo 'Деплойим артефакт (пока просто echo)!'
             }
         }
     }
