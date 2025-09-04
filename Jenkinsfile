@@ -13,7 +13,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Деплойим артефакт (пока просто echo)!'
+                echo 'Деплойим артефакт!'
+                sh 'ls -la target/'
             }
         }
     }
