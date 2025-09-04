@@ -3,17 +3,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Собираем проект...'
+                sh 'echo "Собираем проект..."'
+                sh 'mkdir -p build && echo "artifact" > build/output.txt'
             }
         }
         stage('Test') {
             steps {
-                echo 'Запускаем тесты...'
+                sh 'echo "Запускаем тесты..."'
+                sh 'cat build/output.txt | grep artifact'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Деплойим приложение!'
+                sh 'echo "Деплойим приложение на сервер (пока фейково)!"'
             }
         }
     }
