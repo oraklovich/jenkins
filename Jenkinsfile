@@ -3,18 +3,24 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                dir('demo') {
+                    sh 'mvn clean package'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                dir('demo') {
+                    sh 'mvn test'
+                }
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Деплойим артефакт!'
-                sh 'ls -la target/'
+                dir('demo') {
+                    sh 'ls -la target/'
+                }
             }
         }
     }
