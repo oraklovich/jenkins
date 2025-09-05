@@ -15,6 +15,13 @@ pipeline {
                 }
             }
         }
+        stage('Code Analysis') {
+             steps {
+                 withSonarQubeEnv('MySonarQube') {
+                    sh 'mvn sonar:sonar -Dsonar.projectKey=demo'
+                  }
+             }
+         }
         stage('Deploy') {
             steps {
                 echo 'Деплойим артефакт!'
